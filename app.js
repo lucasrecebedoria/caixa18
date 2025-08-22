@@ -1,0 +1,1 @@
+// Lógica principal do site (Firebase, Caixa, Abastecimento, Relatórios, Impressão)
