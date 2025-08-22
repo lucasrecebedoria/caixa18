@@ -1,1 +1,26 @@
-<!-- Tela de Relatórios -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios - Caixa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <header>
+    <h2>Relatórios</h2>
+    <button onclick="location.href='dashboard.html'">Voltar</button>
+  </header>
+  <main>
+    <label>Filtrar por Data:</label>
+    <input type="date" id="filterDate">
+    <button onclick="carregarRelatorios()">Aplicar Filtro</button>
+    <div id="relatoriosContainer"></div>
+  </main>
+  <script src="firebase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,1 +1,44 @@
-<!-- Tela de Caixa e Abastecimento -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Caixa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <header>
+    <div id="userInfo"></div>
+    <button onclick="logout()">Sair</button>
+    <button onclick="location.href='relatorios.html'">Relatórios</button>
+  </header>
+  <main>
+    <h2>Caixa</h2>
+    <button onclick="abrirCaixa()">Abrir Caixa</button>
+    <button onclick="fecharCaixa()">Fechar Caixa</button>
+
+    <div id="abastecimentoForm" style="display:none;">
+      <h3>Abastecimento</h3>
+      <label>Validador:</label>
+      <select id="validador">
+        <option>PRODATA</option>
+        <option>DIGICON</option>
+      </select>
+      <label>Quantidade Bordos:</label>
+      <input type="number" id="qtdBordos">
+      <label>Valor R$:</label>
+      <input type="number" id="valor" readonly>
+      <label>Prefixo:</label>
+      <input type="text" id="prefixo" placeholder="Digite 3 dígitos">
+      <label>Matrícula Motorista:</label>
+      <input type="text" id="matMotorista">
+      <button onclick="salvarAbastecimento()">Salvar</button>
+    </div>
+  </main>
+  <script src="firebase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

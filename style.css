@@ -1,1 +1,50 @@
-/* Estilo com contraste ajustado para botões escuros */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000, #333);
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background: #111;
+  padding: 10px;
+}
+
+button {
+  background: #006400;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: #009900;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.login-container input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.logo {
+  width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+}

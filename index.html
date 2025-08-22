@@ -1,1 +1,32 @@
-<!-- Tela de Login e Registro -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Caixa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <div class="login-container">
+    <img src="logo/MOVE_BUSS_LOGO02.png" class="logo" alt="Logo">
+    <h2>Login</h2>
+    <input type="text" id="loginMatricula" placeholder="Matrícula">
+    <input type="password" id="loginSenha" placeholder="Senha">
+    <button id="btnLogin">Entrar</button>
+    <p>Não tem conta? <a href="#" onclick="toggleRegister()">Registrar</a></p>
+
+    <div id="registerContainer" style="display:none;">
+      <h2>Registrar</h2>
+      <input type="text" id="regMatricula" placeholder="Matrícula">
+      <input type="text" id="regNome" placeholder="Nome">
+      <input type="password" id="regSenha" placeholder="Senha">
+      <button id="btnRegister">Registrar</button>
+    </div>
+  </div>
+  <script src="firebase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
