@@ -2,30 +2,32 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Caixa</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="app.js"></script>
+  <script defer src="firebase.js"></script>
+  <script defer src="app.js"></script>
 </head>
-<body>
+<body class="dark-bg">
   <div class="login-container">
-    <img src="logo.png" alt="Logo" class="logo">
-
+    <img src="MOVE_BUSS_LOGO02.png" alt="Logo" class="logo">
     <h2>Login</h2>
-    <input type="text" id="loginMatricula" placeholder="Matrícula">
-    <input type="password" id="loginSenha" placeholder="Senha">
-    <button id="btnLogin">Entrar</button>
+    <form id="loginForm">
+      <input type="text" id="matriculaLogin" placeholder="Matrícula" required>
+      <input type="password" id="senhaLogin" placeholder="Senha" required>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+    <p>Não tem conta? <a href="#" id="showRegister">Registrar</a></p>
+  </div>
 
-    <p>Ainda não tem conta? <a href="#" id="showRegister">Registrar</a></p>
-
-    <div id="registerForm" style="display:none;">
-      <h2>Registrar</h2>
-      <input type="text" id="regMatricula" placeholder="Matrícula">
-      <input type="text" id="regNome" placeholder="Nome">
-      <input type="password" id="regSenha" placeholder="Senha">
-      <button id="btnRegistrar">Registrar</button>
-    </div>
+  <div class="register-container hidden">
+    <h2>Registrar</h2>
+    <form id="registerForm">
+      <input type="text" id="matriculaRegister" placeholder="Matrícula" required>
+      <input type="text" id="nomeRegister" placeholder="Nome" required>
+      <input type="password" id="senhaRegister" placeholder="Senha" required>
+      <button type="submit" class="btn">Registrar</button>
+    </form>
+    <p>Já tem conta? <a href="#" id="showLogin">Login</a></p>
   </div>
 </body>
 </html>

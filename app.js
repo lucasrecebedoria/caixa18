@@ -1,35 +1,62 @@
-import { db, auth } from './firebase.js';
-import { collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+import { auth, db } from './firebase.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { doc, setDoc, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-// Simples: Login / Registro
-document.addEventListener("DOMContentLoaded", () => {
-  const btnLogin = document.getElementById("btnLogin");
-  const btnRegistrar = document.getElementById("btnRegistrar");
-  const showRegister = document.getElementById("showRegister");
+// Registro e Login
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const showRegister = document.getElementById('showRegister');
+const showLogin = document.getElementById('showLogin');
 
-  if(showRegister){
-    showRegister.addEventListener("click", ()=>{
-      document.getElementById("registerForm").style.display = "block";
-    });
-  }
+if(showRegister){
+  showRegister.addEventListener('click', () => {
+    document.querySelector('.login-container').classList.add('hidden');
+    document.querySelector('.register-container').classList.remove('hidden');
+  });
+}
+if(showLogin){
+  showLogin.addEventListener('click', () => {
+    document.querySelector('.register-container').classList.add('hidden');
+    document.querySelector('.login-container').classList.remove('hidden');
+  });
+}
 
-  if(btnRegistrar){
-    btnRegistrar.addEventListener("click", async ()=>{
-      alert("Cadastro simulado! Salvaria em Firestore + Auth.");
-    });
-  }
+if(registerForm){
+  registerForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const matricula = document.getElementById('matriculaRegister').value;
+    const nome = document.getElementById('nomeRegister').value;
+    const senha = document.getElementById('senhaRegister').value;
+    try {
+      const email = matricula + "@mail.com";
+      const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+      await setDoc(doc(db, "usuarios", userCredential.user.uid), { matricula, nome });
+      alert("Registro concluído! Faça login.");
+      window.location.href="index.html";
+    } catch (err) { alert("Erro no registro: "+err.message); }
+  });
+}
 
-  if(btnLogin){
-    btnLogin.addEventListener("click", ()=>{
-      window.location.href = "dashboard.html";
-    });
-  }
+if(loginForm){
+  loginForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const matricula = document.getElementById('matriculaLogin').value;
+    const senha = document.getElementById('senhaLogin').value;
+    try {
+      const email = matricula + "@mail.com";
+      await signInWithEmailAndPassword(auth, email, senha);
+      window.location.href="dashboard.html";
+    } catch (err) { alert("Erro no login: "+err.message); }
+  });
+}
 
-  const btnLogout = document.getElementById("btnLogout");
-  if(btnLogout){
-    btnLogout.addEventListener("click", ()=>{
-      window.location.href = "index.html";
-    });
+// Dashboard e abastecimento
+onAuthStateChanged(auth, async (user)=>{
+  if(user){
+    const logoutBtn = document.getElementById('logoutBtn');
+    if(logoutBtn){
+      logoutBtn.classList.remove('hidden');
+      logoutBtn.addEventListener('click', ()=>signOut(auth));
+    }
   }
 });

@@ -2,39 +2,47 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Dashboard - Caixa</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="app.js"></script>
+  <script defer src="firebase.js"></script>
+  <script defer src="app.js"></script>
 </head>
-<body>
+<body class="dark-bg">
   <header>
-    <h2>Caixa</h2>
     <div id="userInfo"></div>
-    <button id="btnLogout">Logout</button>
+    <button id="logoutBtn" class="btn small hidden">Deslogar</button>
   </header>
-
-  <main>
-    <div class="caixa-actions">
-      <button id="abrirCaixa">Abrir Caixa</button>
-      <button id="fecharCaixa">Fechar Caixa</button>
+  <aside class="sidebar">
+    <button id="toggleMenu" class="btn">☰ Menu</button>
+    <div id="menuOptions" class="hidden">
+      <button onclick="window.location.href='dashboard.html'" class="btn">Abastecimento</button>
+      <button onclick="window.location.href='relatorios.html'" class="btn">Relatórios</button>
     </div>
+  </aside>
+  <main id="dashboardContent">
+    <h2>Painel do Caixa</h2>
+    <button id="abrirCaixa" class="btn">Abrir Caixa</button>
+    <button id="fecharCaixa" class="btn hidden">Fechar Caixa</button>
 
-    <div id="abastecimentoForm" style="display:none;">
+    <section id="abastecimentoSection" class="hidden">
       <h3>Abastecimento</h3>
-      <select id="tipoValidador">
-        <option value="PRODATA">PRODATA</option>
-        <option value="DIGICON">DIGICON</option>
-      </select>
-      <input type="number" id="qtdBordos" placeholder="Qtd Bordos">
-      <input type="text" id="valor" placeholder="Valor R$" readonly>
-      <input type="text" id="prefixo" placeholder="Prefixo (3 dígitos)">
-      <input type="text" id="matMotorista" placeholder="Matrícula Motorista">
-      <button id="btnSalvarAbastecimento">Salvar</button>
-    </div>
-
-    <button onclick="window.location.href='relatorios.html'">Relatórios</button>
+      <form id="abastecimentoForm">
+        <label>Validador:</label>
+        <select id="validador">
+          <option value="PRODATA">PRODATA</option>
+          <option value="DIGICON">DIGICON</option>
+        </select>
+        <label>Quantidade de Bordos:</label>
+        <input type="number" id="qtdBordos" required>
+        <label>Valor R$:</label>
+        <input type="text" id="valor" readonly>
+        <label>Prefixo:</label>
+        <input type="text" id="prefixo" maxlength="3" required>
+        <label>Matrícula Motorista:</label>
+        <input type="text" id="matriculaMotorista" required>
+        <button type="submit" class="btn">Salvar</button>
+      </form>
+    </section>
   </main>
 </body>
 </html>

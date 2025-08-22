@@ -2,24 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relatórios</title>
+  <title>Relatórios - Caixa</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="app.js"></script>
+  <script defer src="firebase.js"></script>
+  <script defer src="app.js"></script>
 </head>
-<body>
+<body class="dark-bg">
   <header>
     <h2>Relatórios de Caixa</h2>
-    <button onclick="window.location.href='dashboard.html'">Voltar</button>
+    <button onclick="window.location.href='dashboard.html'" class="btn small">Voltar</button>
   </header>
-
   <main>
-    <div class="filtros">
-      <input type="month" id="filtroMes">
-      <input type="text" id="filtroMatricula" placeholder="Matrícula">
-      <button id="btnFiltrar">Filtrar</button>
-    </div>
+    <label>Filtrar por data:</label>
+    <input type="date" id="filtroData">
+    <label>Filtrar por mês:</label>
+    <input type="month" id="filtroMes">
+    <label>Filtrar por matrícula:</label>
+    <input type="text" id="filtroMatricula" placeholder="Matrícula (apenas admin)">
+    <button id="aplicarFiltro" class="btn">Aplicar</button>
 
     <div id="relatoriosContainer"></div>
   </main>
